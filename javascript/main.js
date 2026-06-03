@@ -8,8 +8,10 @@ let loop = (currentTime) => {
     let timeDelta;
     if (!timeOfLastFrame) timeDelta = 0;
     else timeDelta = currentTime - timeOfLastFrame;
+    
     renderer.clearScreen();
-    alienManager.tick(timeDelta);
+    alienManager.tick(timeDelta, currentTime);
+
     timeOfLastFrame = currentTime;
     window.requestAnimationFrame(loop);
 };

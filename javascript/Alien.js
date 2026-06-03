@@ -1,5 +1,8 @@
+// to fix some jankiness, only let aliens think they have hit a wall every 0.1 seconds
+let wallHittingBuffer = 100;
+
 export class Alien {
-    constructor(x, y, width = 50, height = 50, xDirection = 1, speed = 0.25) {
+    constructor(x, y, width = 50, height = 50, xDirection = 1, speed = 0.15) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -8,24 +11,40 @@ export class Alien {
         this.speed = speed;
 
         this.desiredYPosition = y; // aliens will gradually move down towards their desired y position;
+        this.lastTimeIHitAWall = 0;
     }
 
-    isHittingLeftEdge = (levelWidth) => {
-        return this.x < 0;
+    isHittingLeftEdge = (timeDelta, currentTime, levelWidth) => {
+        if (
+            ((currentTime - this.lastTimeIHitAWall) > wallHittingBuffer)
+            &&
+            (this.x < 0)
+        ) {
+            this.lastTimeIHitAWall = currentTime;
+            return true;
+        }
+        return false;
     };
 
-    isHittingRightEdge = (levelWidth) => {
-        return this.x > levelWidth - this.width;
+    isHittingRightEdge = (timeDelta, currentTime, levelWidth) => {
+        if (
+            ((currentTime - this.lastTimeIHitAWall) > wallHittingBuffer)
+            &&
+            (this.x > levelWidth - this.width)
+        ) {
+            this.lastTimeIHitAWall = currentTime;
+            return true;
+        }
+        return false;
     };
 
-    tick = (timeDelta, levelWidth) => {
-        if (this.isHittingLeftEdge(levelWidth)) {
-            this.x = 0;
+    tick = (timeDelta, currentTime, levelWidth) => {
+        if (this.isHittingLeftEdge(timeDelta, currentTime, levelWidth)) {
             this.xDirection = 1;
             this.desiredYPosition += this.height;
         }
-        else if (this.isHittingRightEdge(levelWidth)) {
-            this.x - levelWidth - this.width;
+        else if (this.isHittingRightEdge(timeDelta, currentTime, levelWidth)) {
+            console.log("i'm hitting the right edge!")
             this.xDirection = -1;
             this.desiredYPosition += this.height;
         }
