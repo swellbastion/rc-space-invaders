@@ -4,6 +4,10 @@ export class Renderer {
         this.dpi = dpi;
         this.images = images;
         this.ctx = canvas.getContext("2d");
+
+        // store original width and height for collision detection later
+        this.gameWidth = this.canvas.width;
+        this.gameHeight = this.canvas.height;
     }
 
     fixCanvasResolution = () => {

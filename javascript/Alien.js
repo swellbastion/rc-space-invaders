@@ -8,7 +8,23 @@ export class Alien {
         this.speed = speed;
     }
 
-    tick = (timeDelta) => {
+    isHittingLeftEdge = (levelWidth) => {
+        return this.x < 0;
+    };
+
+    isHittingRightEdge = (levelWidth) => {
+        return this.x > levelWidth - this.width;
+    };
+
+    tick = (timeDelta, levelWidth) => {
+        if (this.isHittingLeftEdge(levelWidth)) {
+            this.x = 0;
+            this.xDirection = 1;
+        }
+        else if (this.isHittingRightEdge(levelWidth)) {
+            this.x - levelWidth - this.width;
+            this.xDirection = -1;
+        }
         this.x += this.speed * this.xDirection * timeDelta;
     };
 };
