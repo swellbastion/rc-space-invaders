@@ -58,7 +58,7 @@ export class Alien {
         // of miliseconds that ellapsed between frames (in case it is not exactly 16.6666...)
         this.x += this.speed * this.xDirection * timeDelta;
 
-            // When they hit either edge, aliens update their desiredYPosition to the next row down.
+        // When they hit either edge, aliens update their desiredYPosition to the next row down.
         if (this.desiredYPosition > this.y) this.y += this.speed * timeDelta;
     };
 };
