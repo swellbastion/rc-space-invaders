@@ -2,7 +2,7 @@
 let wallHittingBuffer = 100;
 
 export class Alien {
-    constructor(x, y, width = 50, height = 50, xDirection = 1, speed = 0.15) {
+    constructor(x, y, width = 50, height = 50, xDirection = 1, speed = 0.05) {
         this.x = x;
         this.y = y;
         this.width = width;

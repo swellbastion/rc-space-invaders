@@ -4,6 +4,18 @@ import {AlienManager} from "./AlienManager.js";
 import {LaserShooter} from "./LaserShooter.js";
 import {PlayerControls} from "./PlayerControls.js";
 
+let beginningAlienSetup = [
+    new Alien(10, 10, 50, 50, 1),
+    new Alien(70, 10, 50, 50, 1),
+    new Alien(130, 10, 50, 50, 1),
+    new Alien(190, 10, 50, 50, 1),
+
+    new Alien(440, 70, 50, 50, -1),
+    new Alien(380, 70, 50, 50, -1),
+    new Alien(320, 70, 50, 50, -1),
+    new Alien(260, 70, 50, 50, -1),
+];
+
 let timeOfLastFrame, renderer, playerControls, alienManager, laserShooter;
 
 let loop = (currentTime) => {
@@ -38,14 +50,7 @@ let init = () => {
     renderer.fixCanvasResolution();
 
     // set up aliens data
-    alienManager = new AlienManager(
-        renderer,
-        [
-            new Alien(10, 10),
-            new Alien(70, 10),
-            new Alien(130, 10),
-        ]
-    );
+    alienManager = new AlienManager(renderer, beginningAlienSetup);
 
     // make an instance of LaserShooter for the player to control
     laserShooter = new LaserShooter(225, 450);

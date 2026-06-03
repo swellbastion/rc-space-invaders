@@ -8,7 +8,6 @@ export class LaserShooter {
     }
 
     tick(playerControls, gameWidth) {
-        console.log(`laser shooter X = ${this.x}`);
         if (playerControls.controls.left && this.x >= 0) this.x -= this.speed;
         if (playerControls.controls.right && (this.x <= (gameWidth - this.width))) this.x += this.speed;
     }
