@@ -17,6 +17,10 @@ export class Renderer {
     };
 
     clearScreen = () => {
-        this.ctx.drawImage(document.querySelector(".alien1"), 0, 0, 50, 50);
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    };
+
+    drawAlien = (...args) => {
+        this.ctx.drawImage(this.images.alien1, ...args);
     };
 }
