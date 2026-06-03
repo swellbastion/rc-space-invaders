@@ -28,4 +28,15 @@ export class Renderer {
     drawAlien = (alien) => {
         this.ctx.drawImage(this.images.alien1, alien.x, alien.y, alien.width, alien.height);
     };
+
+    drawLaserShooter = (laserShooter) => {
+        this.ctx.drawImage(
+            this.images.laserShooter, 
+            laserShooter.x, 
+            laserShooter.y, 
+            laserShooter.width, 
+            laserShooter.height,
+        );
+    };
+
 }

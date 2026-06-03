@@ -44,7 +44,6 @@ export class Alien {
             this.desiredYPosition += this.height;
         }
         else if (this.isHittingRightEdge(timeDelta, currentTime, levelWidth)) {
-            console.log("i'm hitting the right edge!")
             this.xDirection = -1;
             this.desiredYPosition += this.height;
         }
