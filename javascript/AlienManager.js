@@ -7,7 +7,7 @@ export class AlienManager {
     tick = (timeDelta) => {
         this.alienArray.forEach((alien) => {
             alien.tick(timeDelta, this.renderer.gameWidth);
-            this.renderer.drawAlien(alien.x, alien.y, alien.width, alien.height);
+            this.renderer.drawAlien(alien);
         });
     }
 }

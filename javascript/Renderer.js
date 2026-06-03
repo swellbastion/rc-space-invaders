@@ -24,7 +24,8 @@ export class Renderer {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     };
 
-    drawAlien = (...args) => {
-        this.ctx.drawImage(this.images.alien1, ...args);
+    // draw an alien (also make it face the way it is travelling)
+    drawAlien = (alien) => {
+        this.ctx.drawImage(this.images.alien1, alien.x, alien.y, alien.width, alien.height);
     };
 }
