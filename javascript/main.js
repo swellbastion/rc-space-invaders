@@ -4,6 +4,8 @@ import {AlienManager} from "./AlienManager.js";
 import {LaserShooter} from "./LaserShooter.js";
 import {PlayerControls} from "./PlayerControls.js";
 
+// Data for some aliens that will be on the screen when the program starts.
+// The numbers are for position, dimension, direction they are moving.
 let beginningAlienSetup = [
     new Alien(10, 10, 50, 50, 1),
     new Alien(70, 10, 50, 50, 1),
@@ -16,16 +18,23 @@ let beginningAlienSetup = [
     new Alien(260, 70, 50, 50, -1),
 ];
 
+// The global variables for the program.
 let timeOfLastFrame, renderer, playerControls, alienManager, laserShooter;
 
+// This is the game loop function which executes once every time your monitor refreshes.
 let loop = (currentTime) => {
+    // handle frame timing
     let timeDelta;
     if (!timeOfLastFrame) timeDelta = 0;
     else timeDelta = currentTime - timeOfLastFrame;
     
     renderer.clearScreen();
+
+    // ("Tick" means "do the updates that you have to do inbetween frames")
     alienManager.tick(timeDelta, currentTime);
-    laserShooter.tick(playerControls, renderer.gameWidth);
+    laserShooter.tick(timeDelta, playerControls, renderer.gameWidth);
+
+    // since there is only 1 laser shooter I am just telling the renderer to draw in in the game loop function
     renderer.drawLaserShooter(laserShooter);
 
     timeOfLastFrame = currentTime;

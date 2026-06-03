@@ -1,15 +1,17 @@
+// This class handles logic for drawing and otherwise handling graphical output.
 export class Renderer {
     constructor(canvas, dpi, images) {
         this.canvas = canvas;
-        this.dpi = dpi;
-        this.images = images;
-        this.ctx = canvas.getContext("2d");
+        this.dpi = dpi; // (this will probably be 2 instead of 1 if you have a retina display)
+        this.images = images; // array of <img> element references
+        this.ctx = canvas.getContext("2d"); // the "context" is the object with all the drawing functions that we need
 
-        // store original width and height for collision detection later
+        // store original width and height for collision detection uses later
         this.gameWidth = this.canvas.width;
         this.gameHeight = this.canvas.height;
     }
 
+    // (logic to make sprites not look bad on retina displays)
     fixCanvasResolution = () => {
         const initialWidth = this.canvas.width;
         const initialHeight = this.canvas.height;
@@ -29,6 +31,7 @@ export class Renderer {
         this.ctx.drawImage(this.images.alien1, alien.x, alien.y, alien.width, alien.height);
     };
 
+    // draw the player character
     drawLaserShooter = (laserShooter) => {
         this.ctx.drawImage(
             this.images.laserShooter, 

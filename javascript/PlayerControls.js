@@ -1,3 +1,4 @@
+// This class holds state for which buttons are pressed etc
 export class PlayerControls {
     controls = {
         left: false,
